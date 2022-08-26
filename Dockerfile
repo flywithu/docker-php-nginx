@@ -1,30 +1,35 @@
 ARG ALPINE_VERSION=3.16
 FROM alpine:${ALPINE_VERSION}
-LABEL Maintainer="Tim de Pater <code@trafex.nl>"
-LABEL Description="Lightweight container with Nginx 1.22 & PHP 8.1 based on Alpine Linux."
+LABEL Maintainer="SeungheeOh<flywithu@gmail.com>"
+LABEL Description="Lightweight container with Nginx 1.22 & PHP 7.4 based on Alpine Linux."
 # Setup document root
 WORKDIR /var/www/html
 
 # Install packages and remove default server definition
-RUN apk add --no-cache \
+RUN  echo 'http://dl-cdn.alpinelinux.org/alpine/edge/main' >> /etc/apk/repositories && \
+     echo 'http://dl-cdn.alpinelinux.org/alpine/edge/community' >> /etc/apk/repositories && \
+     echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories && \
+    apk upgrade --update && \
+
+apk add --no-cache \
   curl \
   nginx \
-  php81 \
-  php81-ctype \
-  php81-curl \
-  php81-dom \
-  php81-fpm \
-  php81-gd \
-  php81-intl \
-  php81-mbstring \
-  php81-mysqli \
-  php81-opcache \
-  php81-openssl \
-  php81-phar \
-  php81-session \
-  php81-xml \
-  php81-xmlreader \
-  php81-zlib \
+  php7 \
+  php7-ctype \
+  php7-curl \
+  php7-dom \
+  php7-fpm \
+  php7-gd \
+  php7-intl \
+  php7-mbstring \
+  php7-mysqli \
+  php7-opcache \
+  php7-openssl \
+  php7-phar \
+  php7-session \
+  php7-xml \
+  php7-xmlreader \
+  php7-zlib \
   supervisor
 
 # Create symlink so programs depending on `php` still function
