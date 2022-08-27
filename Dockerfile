@@ -28,6 +28,15 @@ apk add --no-cache \
   php7-xml \
   php7-xmlreader \
   php7-zlib \
+  php7-pdo \
+  php7-pdo_mysql \
+  php7-json \
+  php7-xml \
+  php7-mbstring \
+  php7-zip \
+  php7-simplexml \
+  php7-posix \
+  php7-xmlwriter \
   icu-data-full \ 
   supervisor
 
@@ -48,7 +57,7 @@ COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 RUN chown -R nobody.nobody /var/www/html /run /var/lib/nginx /var/log/nginx
 
 # Switch to use a non-root user from here on
-USER nobody
+#USER nobody
 
 # Add application
 COPY --chown=nobody src/ /var/www/html/
